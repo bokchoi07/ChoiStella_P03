@@ -1,24 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public CharacterController controller;
+    NavMeshAgent myAgent;
 
-    public float speed = 12f;
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] LayerMask layerMask;
 
-    public GameObject playerGameObject;
+    private Quaternion initRot;
+
     private void Start()
     {
-        playerGameObject = GameObject.FindGameObjectWithTag("Player");
+        myAgent = GetComponent<NavMeshAgent>();
+        initRot = transform.rotation;
     }
 
     private void Update()
     {
+        transform.rotation = initRot;
+
         if (Input.GetMouseButtonDown(1))
         {
-            
+            Debug.Log("moving");
+
+            RaycastHit hit;
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            {
+                myAgent.SetDestination(hit.point);
+            }
         }
     }
 }

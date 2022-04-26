@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
-    private void Start()
+    void Start()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
