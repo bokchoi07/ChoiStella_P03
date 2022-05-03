@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     NavMeshAgent myAgent;
 
-    [SerializeField] private Camera mainCamera;
+    [SerializeField] Camera mainCamera;
     [SerializeField] LayerMask layerMask;
 
     private Quaternion initRot;
@@ -24,8 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            Debug.Log("moving");
-
+           
             RaycastHit hit;
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
