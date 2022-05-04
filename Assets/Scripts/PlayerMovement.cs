@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
     NavMeshAgent myAgent;
 
     [SerializeField] Camera mainCamera = null;
-    //[SerializeField] LayerMask layerMask;
 
     private Quaternion initRot;
 
