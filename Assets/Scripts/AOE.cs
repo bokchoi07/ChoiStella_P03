@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class AOE : MonoBehaviour
 {
-    void OnTriggerEnter(Collider other)
+    public bool IsActive()
     {
-        Enemy enemy = other.gameObject.GetComponent<Enemy>();
-        PlayerHealth playerHealth = GetComponentInParent<PlayerHealth>();
-        if (enemy != null)
-        {
-            Debug.Log("enemy took damage");
-            enemy.TakeDamage(); // just say 50f is the damage per strike
-            playerHealth.Heal();
-        }
+        return gameObject.activeSelf;
     }
 }

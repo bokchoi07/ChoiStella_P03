@@ -2,32 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Minion : MonoBehaviour
 {
     [SerializeField] ParticleSystem bloodParticle = null;
 
-    public HealthBar enemyHealthBar;
-    float health = 200f;
+    public HealthBar minionHealthBar;
+    float health = 150f;
 
     void OnTriggerEnter(Collider other)
     {
         AOE aOE = other.GetComponent<AOE>();
         PlayerHealth playerHealth = other.GetComponentInParent<PlayerHealth>();
-
-        if(aOE.IsActive() && aOE != null)
+        
+        if (aOE.IsActive() && aOE != null)
         {
             TakeDamage();
-            playerHealth.Heal();
         }
     }
-
     public void TakeDamage()
     {
         health -= 50f;
         bloodParticle.Play();
-        enemyHealthBar.SetHealth(health);
+        minionHealthBar.SetHealth(health);
 
-        if(health <= 0)
+        if (health <= 0)
         {
             gameObject.SetActive(false);
         }
